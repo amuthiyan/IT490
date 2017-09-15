@@ -27,4 +27,8 @@ print_r($response);
 echo "\n\n";
 
 echo $argv[0]." END".PHP_EOL;
+<<<<<<< HEAD
 
+=======
+?>
+>>>>>>> ec565c7414f15587872e139449c20a2390e67d4e
