@@ -3,14 +3,14 @@
 function LogMsg($e)
 {
   $logmsg = array();
-  $logmsg['time'] = date("h:i:sa");
   $logmsg['date'] = date("Y-m-d");
   $logmsg['day'] = date("l");
+  $logmsg['time'] = date("h:i:sa");
   $logmsg['text'] = $e;
 
   //log the message
-  $msg = implode("-",$logmsg);
-  error_log($msg,3,"./logfile.log");
+  $msg = implode(" - ",$logmsg);
+  error_log($msg."\n",3,"./logfile.log");
 }
 LogMsg('test')
 ?>
