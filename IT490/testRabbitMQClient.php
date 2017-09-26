@@ -21,10 +21,6 @@ $request['username'] = "steve";
 $request['password'] = "password";
 $request['message'] = $msg;
 $response = $client->send_request($request);
-
-$logclient = new rabbitMQClient("logRabbitMQ.ini","logServer");
-
-$logresponse = $logclient->publish($request);
 //$response = $client->publish($request);
 
 echo "client received response: ".PHP_EOL;

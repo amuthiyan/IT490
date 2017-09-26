@@ -31,11 +31,6 @@ function requestProcessor($request)
 }
 
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
-
-$logserver = new rabbitMQServer("logRabbitMQ.ini","logServer");
-
-
 $server->process_requests('requestProcessor');
-$logserver->process_requests('requestProcessor');
 exit();
 ?>

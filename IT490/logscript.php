@@ -12,5 +12,4 @@ function LogMsg($e)
   $msg = implode(" - ",$logmsg);
   error_log($msg."\n",3,"./logfile.log");
 }
-LogMsg('test')
 ?>
