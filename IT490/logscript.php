@@ -1,10 +1,11 @@
 <?php
 //create the function to check if message is critical
-function checkCrit($msg)
+function ifCrit($msg)
 {
   $msg = strtolower($msg);
   if (preg_match('/error/',$msg) | preg_match('/critical/',$msg))
-    echo('send to log server' . "\n");
+    return True;
+  return false;
 }
 
 // Create the error logging function
@@ -19,9 +20,11 @@ function LogMsg($e)
   //log the message
   $msg = implode(" - ",$logmsg);
   //check if msg is critical
-  checkCrit($msg);
+  if (ifCrit($msg))
+    echo('send to log server' . "\n");
+  //log the message
   error_log($msg."\n",3,"./logfile.log");
 }
 
-LogMsg('Critical test')
+LogMsg('test');
 ?>
