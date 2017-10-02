@@ -20,6 +20,6 @@ function sendtoServer($type,$username,$password)
   echo "\n\n";
   return $response;
 }
-sendtoServer("register","asm63","sis");
+//sendtoServer("register","ID10T","fool");
 
 echo $argv[0]." END".PHP_EOL;

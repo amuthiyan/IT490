@@ -12,6 +12,7 @@ function doLogin($username,$password)
     $login = new loginDB();
     $login_status = $login->validateLogin($username,$password);
     echo "tried to login".PHP_EOL;
+    echo $login_status.PHP_EOL;
     return $login_status;
     //return true;
     //return false if not valid
@@ -22,6 +23,7 @@ function doRegister($username,$password)
   $register = new loginDB();
   $register_status = $register->registerUser($username,$password);
   echo "tried to register".PHP_EOL;
+  echo $register_status.PHP_EOL;
   return $register_status;
 }
 

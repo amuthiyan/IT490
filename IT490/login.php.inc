@@ -41,12 +41,28 @@ public function registerUser($username,$password)
 {
 	$un = $this->logindb->real_escape_string($username);
 	$pw = $this->logindb->real_escape_string($password);
-	//modify to input the username and password into database
+	//check if user is in the database
 	$statement = "select * from users where screenname = '$un';";
+	$response = $this->logindb->query($statement);
+	if ($response->num_rows != 0)
+	{
+		echo "Username already exists";
+		return 0;
+	}
 
+	//add user to database
+	$statement = "insert into users(username,password) values('$un','$pw');";
 	$response = $this->logindb->query($statement);
 
-	return 1;
+	//Check if insert was successful
+	$statement = "select * from users where screenname = '$un';";
+	$response = $this->logindb->query($statement);
+	if ($response->num_rows != 0)
+	{
+		echo "Registration successful";
+		return 1;
+	}
+	return 0;
 }
 
 }
