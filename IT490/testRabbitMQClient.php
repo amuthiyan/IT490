@@ -16,14 +16,14 @@ function sendtoServer($type,$username,$password)
   $response = $client->send_request($request);
   //$response = $client->publish($request);
 
-  LogMsg("client received response: " . $response);
+  //LogMsg("client received response: " . $response);
   echo "client received response: ".PHP_EOL;
   print_r($response);
   echo "\n\n";
   return $response;
 }
 
-sendtoServer("register","ID10T","fool");
+sendtoServer("login","root","12345678");
 
 echo $argv[0]." END".PHP_EOL;
 ?>
