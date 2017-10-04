@@ -23,7 +23,7 @@ function sendtoServer($type,$username,$password)
   return $response;
 }
 
-sendtoServer("login","root","12345678");
+//sendtoServer("login","root","12345678");
 
-echo $argv[0]." END".PHP_EOL;
+//echo $argv[0]." END".PHP_EOL;
 ?>

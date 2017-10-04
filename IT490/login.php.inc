@@ -51,7 +51,7 @@ public function registerUser($username,$password)
 	}
 
 	//add user to database
-	$statement = "insert into users(username,password) values('$un','$pw');";
+	$statement = "insert into users (screenname,password) values ('$un','$pw');";
 	$response = $this->logindb->query($statement);
 
 	//Check if insert was successful
