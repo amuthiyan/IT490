@@ -36,9 +36,9 @@ foreach($set_list as $set)
   foreach($card_set as $card)
   {
     //$name = $card['name'];
-    $name = $card['numbers'];
+    $name = $card['name'];
     //echo $name.PHP_EOL;
-    var_dump($name);
+    echo $name.PHP_EOL;
   }
   $set_count += 1;
   //echo $set_count.PHP_EOL;
