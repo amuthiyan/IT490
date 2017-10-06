@@ -1,21 +1,14 @@
 <?php
-//get data from url
-function readURL($url)
-{
-  $ch = curl_init();
+//get the read_url function
+require_once('api_pull.php.inc');
 
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-
-  $response = json_decode(curl_exec($ch),TRUE);
-  curl_close($ch);
-  return $response;
-}
 //get list of sets
 $set_list = readURL("http://yugiohprices.com/api/card_sets");
 //echo var_dump($set_list);
 $set_count = 0;
+
+//get list of each card name and print tag
+$card_list = [];
 
 foreach($set_list as $set)
 {
@@ -35,18 +28,19 @@ foreach($set_list as $set)
   //print name of every cards
   foreach($card_set as $card)
   {
-    //$name = $card['name'];
     $name = $card['name'];
-    //echo $name.PHP_EOL;
-    echo $name.PHP_EOL;
+
+    $info = $card['numbers'];
+    $tag = $info[0]['print_tag'];
+
+    //echo $tag.PHP_EOL;
+
+    $card_list[$tag] = $name;
   }
   $set_count += 1;
-  //echo $set_count.PHP_EOL;
-  //echo $set_count.PHP_EOL;
+  echo $set_count." ";
+
 }
+var_dump($card_list);
 
-
-
-
-//echo var_dump($cards);
 ?>
