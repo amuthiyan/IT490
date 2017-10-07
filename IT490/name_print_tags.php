@@ -1,7 +1,10 @@
 <?php
 //get the read_url function
 require_once('api_pull.php.inc');
+require_once('logscript.php');
 
+function getCardTags()
+{
 //get list of sets
 $set_list = readURL("http://yugiohprices.com/api/card_sets");
 //echo var_dump($set_list);
@@ -33,7 +36,7 @@ foreach($set_list as $set)
     $info = $card['numbers'];
     $tag = $info[0]['print_tag'];
 
-    //echo $tag.PHP_EOL;
+    //echo $name.PHP_EOL;
 
     $card_list[$tag] = $name;
   }
@@ -41,6 +44,11 @@ foreach($set_list as $set)
   echo $set_count." ";
 
 }
-var_dump($card_list);
+LogMsg('Card list sent');
+return json_encode($card_list);
+}
+
+//$card_list = getCardTags();
+//var_dump($card_list);
 
 ?>
