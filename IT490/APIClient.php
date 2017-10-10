@@ -11,8 +11,6 @@ function getAllCards()
   $client = new rabbitMQClient("APIRabbit.ini","APIServer");
   $request = array();
   $request['type'] = "all_cards";
-  $request['tag'] = $tag;
-  $request['name'] = $name;
   //$request['message'] = $msg;
   $response = $client->send_request($request);
   //$response = $client->publish($request);
