@@ -43,6 +43,7 @@ foreach($set_list as $set)
   $set_count += 1;
   echo $set_count." ";
 
+  //$card_list = array_slice($card_list,0,10);
 }
 LogMsg('Card list sent');
 return json_encode($card_list);

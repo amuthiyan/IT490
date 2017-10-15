@@ -15,7 +15,7 @@ function getAllCards()
   $response = $client->send_request($request);
   //$response = $client->publish($request);
 
-  $response = json_decode($response);
+  $response = json_decode($response,true);
   LogMsg("client received response: ");
   echo "client received response: ".PHP_EOL;
   print_r($response);

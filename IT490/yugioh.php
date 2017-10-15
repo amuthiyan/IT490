@@ -4,9 +4,9 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('APIClient.php');
 
-if(isset($_GET))
+if(isset($_POST))
 {
-  $request = $_GET;
+  $request = $_POST;
   $response = "unsupported request type";
   switch($request['type'])
   {

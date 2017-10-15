@@ -15,12 +15,19 @@ class Deck
 
   public function add_card($card)
   {
-    array_push($this->deck,$card);
+    if(count($this->deck)<60)
+    {
+      array_push($this->deck,$card);
+    }
+    else
+    {
+      echo "Deck card limit reached, cannot add card";
+    }
   }
 
   public function save_deck()
   {
-    $db = new mysqli("127.0.0.1","root","sisibdp02","login");
+    //$db = new mysqli("127.0.0.1","root","sisibdp02","login");
     foreach($this->deck as $card)
     {
       //insert the uid, decknum, and card print_tag into database
@@ -57,6 +64,17 @@ class Deck
       }
     }
     return $price;
+  }
+  public function load_deck($uid,$deck_num)
+  {
+    //load deck from the table
+  }
+  public function remove_card($card)
+  {
+    if(in_array($card,$this->deck))
+    {
+      unset($this->deck[array_search($card,$this->deck)]);
+    }
   }
 
 }
