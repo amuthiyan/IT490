@@ -9,6 +9,7 @@ function getCard($tag,$name)
   $card = [];
 
   //get rarity, high price, low price, average price
+  $card["name"] = $name;
   $card["rarity"] = $card_price["data"]["price_data"]["rarity"];
   $card["high_price"] = $card_price["data"]["price_data"]["price_data"]["data"]["prices"]["high"];
   $card["low_price"] = $card_price["data"]["price_data"]["price_data"]["data"]["prices"]["low"];
@@ -28,7 +29,8 @@ function getCard($tag,$name)
   $card["level"] = $card_info["data"]["level"];
 
   //return info about the card in an array
-  LogMsg('Card information sent');
+  //LogMsg('Card information sent');
+  echo json_encode($card);
   return json_encode($card);
 
 }

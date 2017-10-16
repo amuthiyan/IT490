@@ -4,7 +4,6 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('logscript.php');
-require_once('deck_class.php');
 
 function getAllCards()
 {
@@ -25,9 +24,11 @@ function getAllCards()
 
 function getCard($tag,$name)
 {
+  $file = __FILE__.PHP_EOL;
+  $PathArray = explode("/",$file);
   $client = new rabbitMQClient("APIRabbit.ini","APIServer");
   $request = array();
-  $request['type'] = "get_cards";
+  $request['type'] = "get_card";
   $request['tag'] = $tag;
   $request['name'] = $name;
   //$request['message'] = $msg;
@@ -35,16 +36,18 @@ function getCard($tag,$name)
   //$response = $client->publish($request);
 
   $card = json_decode($response,true);
-  LogMsg("client received response: ");
+  LogMsg("client received response: ",$PathArray[4]);
   echo "client received response: ".PHP_EOL;
-  print_r($card);
-  echo "\n\n";
+  //print_r($card);
+  //echo "\n\n";
   return $card;
 }
 
-$all_cards = getAllCards();
+//$all_cards = getAllCards();
+//$card = getCard("LTGY-EN035","Harpie Channeler");
+//var_dump($card);
 
-var_dump($all_cards);
+//var_dump($card);
 
 
 //echo $argv[0]." END".PHP_EOL;
