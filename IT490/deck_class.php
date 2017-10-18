@@ -4,13 +4,12 @@ class Deck
 {
   private $deck;
   private $uid;
-  private $deck_num;
 
-  public function __construct($uid,$deck_num)
+  public function __construct($uid)
   {
     $this->deck = [];
     $this->uid = $uid;
-    $this->deck_num = $deck_num;
+    //$this->deck_num = $deck_num;
   }
 
   public function add_card($card)
@@ -25,19 +24,33 @@ class Deck
     }
   }
 
+  public function show_cards()
+  {
+    $card_names = [];
+    foreach($this->deck as $card)
+    {
+      array_push($card_names,$card['name']);
+      //$card_names[$card['tag']] = $card['name'];
+    }
+    return $card_names;
+  }
+
   public function save_deck()
   {
     //$db = new mysqli("127.0.0.1","root","sisibdp02","login");
-    $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
+
     foreach($this->deck as $card)
     {
+      $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
       //$card = json_encode($card);
       //insert the uid, decknum, and card print_tag into database
       $request = array();
       $request["type"] = "save_deck";
       $request["uid"] = $this->uid;
       //$request["deck_num"] = $this->deck_num;
-      $request["card"] = $card;
+      $request["name"] = $card["name"];
+      $request["tag"] = $card["tag"];
+      $request["avg_price"] = $card["avg_price"];
       $response = $client->send_request($request);
       echo "saving card to deck".PHP_EOL;
     }
@@ -73,7 +86,7 @@ class Deck
     }
     return $price;
   }
-  public function load_deck($uid,$deck_num)
+  public function load_deck($uid)
   {
     //load deck from the table
     $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
@@ -84,15 +97,27 @@ class Deck
     $response = $client->send_request($request);
     $response = json_decode($response,true);
     $this->uid = $uid;
-    $this->deck_num = $deck_num;
-    $this->deck = $response['deck'];
+    $this->deck = $response;
   }
   public function remove_card($card)
   {
+    $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
+    $request["type"] = "remove_card";
+    $request['uid'] = $this->uid;
+    $request['tag'] = $card['tag'];
+
+    $response = $client->send_request($request);
+    /*
     if(in_array($card,$this->deck))
     {
       unset($this->deck[array_search($card,$this->deck)]);
-    }
+      $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
+      $request["type"] = "remove_card";
+      $request['uid'] = $this->uid;
+      $request['tag'] = $card['tag'];
+
+      $response = $client->send_request($request);
+    }*/
   }
 
 }

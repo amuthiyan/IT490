@@ -4,7 +4,7 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('logscript.php');
-require_once('name_print_tags.php');
+//require_once('name_print_tags.php');
 require_once('save_deck.php');
 
 
@@ -26,10 +26,13 @@ function requestProcessor($request)
   {
     case "save_deck":
       LogMsg('Saving Deck now',$PathArray[4]);
-      return saveDeck($request['uid'],$request['deck_num'],$request['card']);
+      return saveCard($request['uid'],$request['name'],$request['tag'],$request['avg_price']);
     case "load_deck":
       LogMsg('Loading deck',$PathArray[4]);
-      return loadDeck($request['uid'],$request['deck_num']);
+      return loadDeck($request['uid']);
+    case "remove_card":
+      LogMsg('Removing Card',$PathArray[4]);
+      return removeCard($request['uid'],$request['tag']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
