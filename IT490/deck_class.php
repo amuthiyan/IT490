@@ -17,6 +17,7 @@ class Deck
     {
       array_push($this->deck,$card);
       //send card to database
+      /*
       $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
       //insert the uid, decknum, and card print_tag into database
       $request = array();
@@ -27,6 +28,7 @@ class Deck
       $request["avg_price"] = $card["avg_price"];
       $response = $client->send_request($request);
       echo "saving card to deck".PHP_EOL;
+      */
     }
     else
     {
@@ -39,7 +41,8 @@ class Deck
     $card_names = [];
     foreach($this->deck as $card)
     {
-      array_push($card_names,$card['name']);
+      $card_info = [$card['tag'],$card['name']];
+      array_push($card_names,$card_info);
       //$card_names[$card['tag']] = $card['name'];
     }
     return json_encode($card_names);
@@ -109,25 +112,30 @@ class Deck
     $this->uid = $uid;
     $this->deck = $response;
   }
-  public function remove_card($card)
+  public function remove_card($card_tag,$card_name)
   {
-    /*
+
+
     $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
     $request["type"] = "remove_card";
     $request['uid'] = $this->uid;
-    $request['tag'] = $card['tag'];
+    $request['tag'] = $card_tag;
 
     $response = $client->send_request($request);
-    */
-    if(in_array($card,$this->deck))
-    {
-      unset($this->deck[array_search($card,$this->deck)]);
-      $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
-      $request["type"] = "remove_card";
-      $request['uid'] = $this->uid;
-      $request['tag'] = $card['tag'];
 
-      $response = $client->send_request($request);
+    //if(in_array($card,$this->deck))
+    foreach($this->deck as $card)
+    {
+      if(($card['name'] == $card_name) & ($card['tag'] = $card_tag))
+      {
+        unset($this->deck[array_search($card,$this->deck)]);
+        $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
+        $request["type"] = "remove_card";
+        $request['uid'] = $this->uid;
+        $request['tag'] = $$card_tag;
+
+        $response = $client->send_request($request);
+      }
     }
   }
 

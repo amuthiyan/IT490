@@ -21,12 +21,13 @@ $test_deck->add_card($card);
 $test_deck->add_card($card2);
 
 $names = $test_deck->show_cards();
-$names = json_decode($names);
-print_r($names);
+echo $names.PHP_EOL;
+/*
 foreach($names as $name)
 {
   echo $name.PHP_EOL;
 }
+*/
 //$test_deck->remove_card($card);
 //$test_deck->save_deck();
 //$new_deck = new Deck('aneesh');

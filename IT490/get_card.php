@@ -10,6 +10,7 @@ function getCard($tag,$name)
 
   //get rarity, high price, low price, average price
   $card["name"] = $name;
+  $card["tag"] = $tag;
   $card["rarity"] = $card_price["data"]["price_data"]["rarity"];
   $card["high_price"] = $card_price["data"]["price_data"]["price_data"]["data"]["prices"]["high"];
   $card["low_price"] = $card_price["data"]["price_data"]["price_data"]["data"]["prices"]["low"];
