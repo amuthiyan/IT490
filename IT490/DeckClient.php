@@ -5,7 +5,7 @@ require_once('rabbitMQLib.inc');
 require_once('logscript.php');
 require_once('deck_class.php');
 
-$test_deck = new Deck('chris');
+$test_deck = new Deck('Ventus_Deus');
 //print_r($test_deck);
 $card = [];
 $card['name'] = 'Harpie Channeler';

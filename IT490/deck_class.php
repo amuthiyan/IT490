@@ -17,7 +17,7 @@ class Deck
     {
       array_push($this->deck,$card);
       //send card to database
-      /*
+
       $client = new rabbitMQClient("DeckRabbit.ini","DeckServer");
       //insert the uid, decknum, and card print_tag into database
       $request = array();
@@ -28,7 +28,7 @@ class Deck
       $request["avg_price"] = $card["avg_price"];
       $response = $client->send_request($request);
       echo "saving card to deck".PHP_EOL;
-      */
+      
     }
     else
     {
