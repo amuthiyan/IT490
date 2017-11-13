@@ -14,4 +14,13 @@ function readURL($url)
 }
 
 //echo var_dump($cards);
+
+
+function readImage($url,$name)
+{
+  $image = imagecreatefromjpeg($url);
+  //imagejpeg($image,"card_images/$name.jpg");
+  return $image;
+
+}
 ?>

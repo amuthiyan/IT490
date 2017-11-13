@@ -36,7 +36,6 @@ function getCard($tag,$name)
 
 }
 
-//$card = getCard("LTGY-EN035","Harpie Channeler");
-//var_dump($card);
-
+$card = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
+var_dump($card);
  ?>

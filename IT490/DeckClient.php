@@ -4,18 +4,26 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('logscript.php');
 require_once('deck_class.php');
+require_once('get_card.php');
 
-$test_deck = new Deck('Ventus_Deus');
+$test_deck = new Deck('asdf');
 //print_r($test_deck);
-$card = [];
-$card['name'] = 'Harpie Channeler';
-$card['tag'] = 'MP14-EN021';
-$card['avg_price'] = 4.24;
 
+
+$harpie = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
+var_dump($harpie);
+
+$card = [];
+$card['name'] = $harpie['name'];
+$card['tag'] = $harpie['tag'];
+$card['avg_price'] = $harpie['avg_price'];
+
+$jinzo = json_decode(getCard('BPT-011','Jinzo'),true);
 $card2 = [];
-$card2['name'] = 'Harpy';
-$card2['tag'] = 'MP14-EN021';
-$card2['avg_price'] = 4.24;
+$card2['name'] = $jinzo['name'];
+$card2['tag'] = $jinzo['tag'];
+$card2['avg_price'] = $jinzo['avg_price'];
+var_dump($jinzo);
 
 $test_deck->add_card($card);
 $test_deck->add_card($card2);

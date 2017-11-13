@@ -32,7 +32,6 @@ foreach($set_list as $set)
   foreach($card_set as $card)
   {
     $name = $card['name'];
-
     $info = $card['numbers'];
     $tag = $info[0]['print_tag'];
 
@@ -41,7 +40,7 @@ foreach($set_list as $set)
     $card_list[$tag] = $name;
   }
   $set_count += 1;
-  echo $set_count." ";
+  //echo $set_count." ";
 
   //$card_list = array_slice($card_list,0,10);
 }
@@ -49,7 +48,7 @@ LogMsg('Card list sent');
 return json_encode($card_list);
 }
 
-//$card_list = getCardTags();
+$card_list = getCardTags();
 //var_dump($card_list);
 
 ?>
