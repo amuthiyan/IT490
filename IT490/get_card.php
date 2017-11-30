@@ -28,6 +28,7 @@ function getCard($tag,$name)
   $card["atk"] = $card_info["data"]["atk"];
   $card["def"] = $card_info["data"]["def"];
   $card["level"] = $card_info["data"]["level"];
+  $card["image_url"] = "static-3.studiobebop.net/ygo_data/card_images/".str_replace(" ","_",$name).".jpg";
 
   //return info about the card in an array
   //LogMsg('Card information sent');
@@ -36,6 +37,6 @@ function getCard($tag,$name)
 
 }
 
-$card = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
-var_dump($card);
+//$card = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
+//var_dump($card);
  ?>

@@ -4,7 +4,7 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('logscript.php');
-require_once('name_print_tags.php');
+//require_once('name_print_tags.php');
 require_once('get_card.php');
 
 
