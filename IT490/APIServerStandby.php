@@ -39,7 +39,7 @@ function requestProcessor($request)
     return array("returnCode" => '0', 'message'=>"Server received request and processed");
   }
 }
-$server = new rabbitMQServer("APIRabbit.ini","APIServer");
+$server = new rabbitMQServer("APIStandby.ini","APIServer");
 $server->process_requests('requestProcessor');
 
 exit();

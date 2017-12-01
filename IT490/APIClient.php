@@ -4,6 +4,7 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('logscript.php');
+require_once('CheckAlive.php');
 
 function getAllCards()
 {
@@ -26,7 +27,8 @@ function getCard($tag,$name)
 {
   $file = __FILE__.PHP_EOL;
   $PathArray = explode("/",$file);
-  $client = new rabbitMQClient("APIRabbit.ini","APIServer");
+  //$client = new rabbitMQClient("APIRabbit.ini","APIServer");
+  $client = SendToConsumer("APIRabbit.ini","APIStandby.ini","APIServer");
   $request = array();
   $request['type'] = "get_card";
   $request['tag'] = $tag;
@@ -44,8 +46,8 @@ function getCard($tag,$name)
 }
 
 //$all_cards = getAllCards();
-//$card = getCard("LTGY-EN035","Harpie Channeler");
-//var_dump($card);
+$card = getCard("LTGY-EN035","Harpie Channeler");
+var_dump($card);
 
 //var_dump($card);
 
