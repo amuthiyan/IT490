@@ -1,9 +1,12 @@
 #!/usr/bin/php
 <?php
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-require_once('logscript.php');
+//Define path for root to folow
+$root_path = '/home/amuthiyan/git/IT490/';
+
+require_once($root_path.'RabbitMQ/path.inc');
+require_once($root_path.'RabbitMQ/get_host_info.inc');
+require_once($root_path.'RabbitMQ/rabbitMQLib.inc');
+require_once($root_path.'Logging/logscript.php');
 
 $destIP = '';
 $user = '';

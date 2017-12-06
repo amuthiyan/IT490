@@ -1,8 +1,9 @@
 <?php
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-require_once('logscript.php');
+require_once('../RabbitMQ/path.inc');
+require_once('../RabbitMQ/get_host_info.inc');
+require_once('../RabbitMQ/get_host_info.inc');
+require_once('../RabbitMQ/rabbitMQLib.inc');
+require_once('../Logging/logscript.php');
 
 
 //pings server we are about to message to see if it is up
@@ -59,5 +60,5 @@ function SendToConsumer($ini1,$ini2,$server_name)
 }
 
 //CheckAlive("192.168.43.221");
-SendToConsumer("APIRabbit.ini","APIStandby.ini","APIServer");
+//SendToConsumer("APIRabbit.ini","APIStandby.ini","APIServer");
 ?>

@@ -1,6 +1,9 @@
 <?php
-require_once('api_pull.php.inc');
-require_once('logscript.php');
+//Define path for root to folow
+$root_path = '/home/amuthiyan/git/IT490/';
+
+require_once($root_path.'APIServers/api_pull.php.inc');
+require_once($root_path.'Logging/logscript.php');
 
 function getCard($tag,$name)
 {

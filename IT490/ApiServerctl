@@ -1,2 +1,0 @@
-Pid=pgrep ApiServer.php
-kill $pid

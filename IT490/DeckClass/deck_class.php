@@ -28,7 +28,7 @@ class Deck
       $request["avg_price"] = $card["avg_price"];
       $response = $client->send_request($request);
       echo "saving card to deck".PHP_EOL;
-      
+
     }
     else
     {
