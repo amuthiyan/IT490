@@ -8,8 +8,11 @@
 */
 function getHostInfo(array $extra = NULL)
 {
+  //Define path for root to folow
+  $root_path = '/home/amuthiyan/git/IT490/';
+
     $machine;
-    $machine = parse_ini_file("../Inis/host.ini",$process_sections=true);
+    $machine = parse_ini_file("/home/amuthiyan/git/Inis/host.ini",$process_sections=true);
     if ($extra != NULL)
     {
         foreach ($extra as $ini)

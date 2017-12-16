@@ -17,21 +17,21 @@ function requestProcessor($request)
   $file = __FILE__.PHP_EOL;
   $PathArray = explode("/",$file);
 
-  LogMsg("received request",$PathArray[4], "DevDMZ");
+  LogMsg("received request",$PathArray[4], "amuthiyan", "DevDMZStandby");
   echo "received request".PHP_EOL;
   var_dump($request);
   if(!isset($request['type']))
   {
-    LogMsg("ERROR: unsupported message type",$PathArray[4], "DevDMZ");
+    LogMsg("ERROR: unsupported message type",$PathArray[4], "amuthiyan", "DevDMZStandby");
     return "ERROR: unsupported message type";
   }
   switch ($request['type'])
   {
     case "all_cards":
-      LogMsg('Sending all card tags now',$PathArray[4], "DevDMZ");
+      LogMsg('Sending all card tags now',$PathArray[4], "amuthiyan", "DevDMZStandby");
       return getCardTags();
     case "get_card":
-      LogMsg('Sending requested card info now',$PathArray[4], "DevDMZ");
+      LogMsg('Sending requested card info now',$PathArray[4], "amuthiyan", "DevDMZStandby");
       return getCard($request['tag'],$request['name']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
@@ -40,9 +40,11 @@ function requestProcessor($request)
 $file = __FILE__.PHP_EOL;
 $PathArray = explode("/",$file);
 
-LogMsg("Trying to start standby server", $PathArray[4],"DevDMZ");
-$server = new rabbitMQServer($root_path."Inis/APIStandby.ini","APIServer");
-LogMsg("Standby Server started", $PathArray[4],"DevDMZ");
+LogMsg("Trying to start primary server test",$PathArray[4], "amuthiyan","DevDMZStandby");
+echo 'Staring primary'.PHP_EOL;
+
+$server = new rabbitMQServer("/home/amuthiyan/git/Inis/APIRabbit.ini","APIServer");
+//LogMsg("Primary Server started", $PathArray[4],"DevDMZ");
 
 $server->process_requests('requestProcessor');
 exit();

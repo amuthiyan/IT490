@@ -1,0 +1,4 @@
+#!/bin/bash
+
+Pid= pgrep APIServerStandby.php
+kill $pid

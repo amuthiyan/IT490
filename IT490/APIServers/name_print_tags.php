@@ -1,8 +1,20 @@
 <?php
+/*
+This script contains a function to get all the card tags possible.
+*/
+
 //get the read_url function
 require_once('api_pull.php.inc');
 require_once('logscript.php');
 
+/*
+Function getCardTags:
+Returns a list of all card tags in the yugioh game. Takes no parameters.
+Parameters:
+None
+Returns:
+A JSON array containing all the card tags in the game
+*/
 function getCardTags()
 {
 //get list of sets
@@ -18,7 +30,7 @@ foreach($set_list as $set)
   //count the total amount of
   $set_num = count($set_list);
 
-  //echo $set_num.PHP_EOL;
+
   //set url to get data from
   $url = "http://yugiohprices.com/api/set_data/$set";
 

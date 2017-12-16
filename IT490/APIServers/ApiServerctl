@@ -1,0 +1,4 @@
+#!/bin/bash
+
+Pid= pgrep APIServer.php
+kill $pid

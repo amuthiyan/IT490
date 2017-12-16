@@ -49,7 +49,8 @@ function checkDBVer($layer,$machine){
 //This function will make a bundle and send it to your approprite folder on
 //the deploy server
 function deployNew($version_id,$user,$dir){
-  shell_exec("mkdir $version_id;
+  shell_exec("cd ../
+              mkdir $version_id;
               rsync -Rr * $version_id;
               rmdir $version_id/$version_id;
               tar -cvzf $version_id.tar.gz $version_id;

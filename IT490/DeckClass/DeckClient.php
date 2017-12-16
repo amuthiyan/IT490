@@ -1,15 +1,18 @@
 <?php
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-require_once('logscript.php');
-require_once('deck_class.php');
-require_once('get_card.php');
+//Define path for root to folow
+$root_path = '/home/amuthiyan/git/IT490/';
 
-$test_deck = new Deck('asdf');
+require_once($root_path.'RabbitMQ/path.inc');
+require_once($root_path.'RabbitMQ/get_host_info.inc');
+require_once($root_path.'RabbitMQ/rabbitMQLib.inc');
+//require_once('logscript.php');
+require_once($root_path.'DeckClass/AddToDeck.php');
+require_once($root_path.'APIServers/get_card.php');
+
+//$test_deck = new Deck('asdf');
 //print_r($test_deck);
 
-
+/*
 $harpie = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
 var_dump($harpie);
 
@@ -17,6 +20,7 @@ $card = [];
 $card['name'] = $harpie['name'];
 $card['tag'] = $harpie['tag'];
 $card['avg_price'] = $harpie['avg_price'];
+*/
 
 $jinzo = json_decode(getCard('BPT-011','Jinzo'),true);
 $card2 = [];
@@ -25,10 +29,13 @@ $card2['tag'] = $jinzo['tag'];
 $card2['avg_price'] = $jinzo['avg_price'];
 var_dump($jinzo);
 
-$test_deck->add_card($card);
-$test_deck->add_card($card2);
+$card2 = json_encode($card2);
 
-$names = $test_deck->show_cards();
+//$test_deck->add_card($card);
+AddCard('asdf',$card2);
+
+$names = LoadDeck('asdf');
+$names = json_encode($names);
 echo $names.PHP_EOL;
 /*
 foreach($names as $name)
