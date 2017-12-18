@@ -1,5 +1,11 @@
 <?php
-//get data from url
+/*
+Function to pull data from an API with a specific URL endpoint.
+Parameters:
+url - A valid API url
+Returns:
+The data read from the site in array format.
+*/
 function readURL($url)
 {
   $ch = curl_init();
@@ -13,6 +19,5 @@ function readURL($url)
   return $response;
 }
 
-//echo var_dump($cards);
 
 ?>

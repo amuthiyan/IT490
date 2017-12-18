@@ -1,5 +1,10 @@
 #!/usr/bin/php
 <?php
+/*
+A Server for handling requests for card data. It receives requests from a client
+through RabbitMQ, and responds according to the request type given.
+*/
+
 //Define path for root to folow
 $root_path = '/home/amuthiyan/git/IT490/';
 

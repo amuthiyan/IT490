@@ -1,4 +1,9 @@
 <?php
+/*
+This Script contains functions to check if a server is down, and to route it
+appropriately to the secondary server if this is the case.
+*/
+
 require_once('../RabbitMQ/path.inc');
 require_once('../RabbitMQ/get_host_info.inc');
 require_once('../RabbitMQ/get_host_info.inc');
@@ -6,7 +11,14 @@ require_once('../RabbitMQ/rabbitMQLib.inc');
 require_once('../Logging/logscript.php');
 
 
-//pings server we are about to message to see if it is up
+/*
+Function CheckAlive pings an IP address to check if it is on the network
+Parameters:
+ip - The IP address of the server it is going to ping
+Returns:
+Returns a boolean True/False. True if the machine is on the network and the
+ping was succesfull, and False if the ping failed.
+*/
 function CheckAlive($ip)
 {
   exec("ping -c 1 " . $ip,$output,$result);
@@ -22,6 +34,16 @@ function CheckAlive($ip)
   }
 }
 
+/*
+Function SendToConsumer checks if the primary listener is available to receive
+requests, and if not, sends the messages to the secondary listener.
+Parameters:
+ini1 - The .ini file that is associated with the primary listener
+ini2 - The .ini file that is associated with the secondary listener
+server_name - The name of the server that the listeners are on.
+Returns:
+A client that the message will be sent through.
+*/
 function SendToConsumer($ini1,$ini2,$server_name)
 {
   //Check first rabbitmq server
@@ -54,11 +76,6 @@ function SendToConsumer($ini1,$ini2,$server_name)
       echo "Both Servers down, system cannot function".PHP_EOL;
     }
   }
-
-  //echo "IP 1: ".$ip1.PHP_EOL;
-  //echo "IP 2: ".$ip2.PHP_EOL;
 }
 
-//CheckAlive("192.168.43.221");
-//SendToConsumer("APIRabbit.ini","APIStandby.ini","APIServer");
 ?>

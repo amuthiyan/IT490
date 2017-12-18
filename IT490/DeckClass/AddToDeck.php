@@ -13,8 +13,17 @@ require_once($root_path.'RabbitMQ/rabbitMQLib.inc');
 require_once($root_path.'Logging/logscript.php');
 require_once($root_path.'Failover/CheckAlive.php');
 
-//Function to add card to deck
-//Given card uid, deck_num, and JSON format card Array
+/*
+Function AddCard adds a card to the users deck by sending it to the deck
+table in the database.
+Parameters:
+$uid - The username of the user in string format
+$decknum - The number of the deck that the user is adding the card to
+$card - A JSON array containing the card data.
+Returns:
+A boolean response indicating if the addition was successful. 1 for True, and
+0 for False.
+*/
 function AddCard($uid/*,$decknum*/,$card)
 {
   //Define path for root to folow
@@ -39,12 +48,18 @@ function AddCard($uid/*,$decknum*/,$card)
 
   $response = $client->send_request($request);
   return $response;
-
-  //echo "saving card to deck".PHP_EOL;
 }
 
-/* Function to remove card from Deck
-Given uid, decknum, and JSON format card Array */
+/*
+Function RemoveCard removes the card from the users deck table.
+Parameters:
+$uid - The username of the user in string format
+$decknum - The number of the deck that the user is removing the card from
+$card - A JSON array containing the card data.
+Returns:
+A boolean response indicating if the removal was successful. 1 for True, and
+0 for False.
+*/
 function RemoveCard($uid,$decknum,$card)
 {
   //Define path for root to folow
@@ -85,27 +100,15 @@ function LoadDeck($uid/*,$decknum*/)
   return $deck;
 }
 
-/*
-//Accept input from html form and send it to database
-if(isset($_POST))
-{
-  $request = $_POST;
-  $response = "unsupported request type";
-  switch($request['type'])
-  {
-    case "add_card":
-      $response = AddCard($response['uid'],$response['decknum'],$response['card']);
-    case "remove_card":
-      $response = RemoveCard($response['uid'],$response['decknum'],$response['card']);
-    case "load_deck":
-      $deck = LoadDeck($response['uid'],$response['decknum']);
-    break;
-  }
-*/
-
-  /* functin to show the cards within the deck
-  given uid and decknum*/
-  function ShowCards($uid)
+  /*
+  Function ShowCards displays all the cards stored inside a users deck.
+  Parameters:
+  uid - username of users
+  decknum - number of the deck the user wants displayed
+  Returns:
+  An Array of card data
+  */
+  function ShowCards($uid/*,decknum*/)
   {
     //Define path for root to folow
     $root_path = '/home/amuthiyan/git/IT490/';
@@ -132,8 +135,15 @@ if(isset($_POST))
     return json_encode($card_names);
   }
 
-  //Funcion to get price of deck given uid
-  function GetPrice($uid)
+  /*
+  Function GetPrice gives the total price of all the cards in the deck
+  Parameters:
+  uid - the username of the users
+  decknum - The number of the deck the user wants the price of
+  Returns:
+  The total price of the deck as a float
+  */
+  function GetPrice($uid/*,decknum*/)
   {
     //Define path for root to folow
     $root_path = '/home/amuthiyan/git/IT490/';
