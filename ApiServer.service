@@ -1,0 +1,16 @@
+[Unit]
+Description = The listener for API calls
+
+[Service]
+User=root
+WorkingDirectory=/home/amuthiyan/git/IT490
+ExecStart=/home/amuthiyan/git/IT490/APIServers/APIServer.php start
+ExecStop=/home/amuthiyan/git/IT490/APIServers/ApiServerctl stop
+TimeoutSec=30
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target
