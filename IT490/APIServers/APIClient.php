@@ -8,7 +8,7 @@ require_once('../Failover/CheckAlive.php');
 
 function getAllCards()
 {
-  $client = new rabbitMQClient("../Inis/APIRabbit.ini","APIServer");
+  $client = new rabbitMQClient("../../Inis/APIRabbit.ini","APIServer");
   $request = array();
   $request['type'] = "all_cards";
   //$request['message'] = $msg;
@@ -28,7 +28,7 @@ function getCard($tag,$name)
   $file = __FILE__.PHP_EOL;
   $PathArray = explode("/",$file);
   //$client = new rabbitMQClient("APIRabbit.ini","APIServer");
-  $client = SendToConsumer("../Inis/APIRabbit.ini","APIStandby.ini","APIServer");
+  $client = SendToConsumer("../../Inis/APIRabbit.ini","../../APIStandby.ini","APIServer");
   $request = array();
   $request['type'] = "get_card";
   $request['tag'] = $tag;
