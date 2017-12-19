@@ -15,9 +15,7 @@ This should download the files from git to your computer into a directory called
 Now that you have installed the files from github, you still need to set up the system. That will be covered in the next system.
 ***
 ## Setting up the System:
-Leaving off from the previous system, you should be within the folder 'git' that you downloaded. Within that directory, you should see two sub-directories. Navigate into the one called 'IT490'. Ignore the other for now.
-
-Within 'IT490', there are a few sub-directories as well. There are also two files called 'ApiServer.service' and 'ApiServerStandby.service'. These will have to be moved into the 'etc/systemd/system' folder. Use the following commands at the terminal to do so:
+Leaving off from the previous system, you should be within the folder 'git' that you downloaded. Within that directory, there are also two files called 'ApiServer.service' and 'ApiServerStandby.service'. These will have to be moved into the 'etc/systemd/system' folder. Use the following commands at the terminal to do so:
 
 1. `sudo mv ApiServer.service /etc/systemd/system`
 2. `sudo mv ApiServerStandby.service /etc/systemd/system`
