@@ -60,7 +60,7 @@ Returns:
 A boolean response indicating if the removal was successful. 1 for True, and
 0 for False.
 */
-function RemoveCard($uid,$decknum,$card)
+function RemoveCard($uid,$decknum,$tag)
 {
   //Define path for root to folow
   $root_path = '/home/amuthiyan/git/IT490/';

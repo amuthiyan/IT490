@@ -7,12 +7,13 @@ This guide will cover 3 main areas:
 3. Handling deployment to other Servers
 ***
 ## Installing from Github:
-Installing this system from github is quite simple. Navigate to the directory that you wish the files to be installed in, and input this command at the terminal:
+Installing this system from github is quite simple. Navigate to the directory that you wish the files to be installed in, and input these commands at the terminal:
 
-`git clone https://github.com/amuthiyan/IT490.git`
+1. `git clone https://github.com/amuthiyan/IT490.git`
+2. `git checkout final`
 
-This should download the files from git to your computer into a directory called 'git'. Navigate into that directory.
-Now that you have installed the files from github, you still need to set up the system. That will be covered in the next system.
+This should download the files from git to your computer into a directory called 'IT490'. Navigate into that directory.
+Now that you have installed the files from github, you still need to set up the system. That will be covered in the next section.
 ***
 ## Setting up the System:
 Leaving off from the previous system, you should be within the folder 'git' that you downloaded. Within that directory, there are also two files called 'ApiServer.service' and 'ApiServerStandby.service'. These will have to be moved into the 'etc/systemd/system' folder. Use the following commands at the terminal to do so:
@@ -20,7 +21,9 @@ Leaving off from the previous system, you should be within the folder 'git' that
 1. `sudo mv ApiServer.service /etc/systemd/system`
 2. `sudo mv ApiServerStandby.service /etc/systemd/system`
 
-These files allow the listeners that do the work of fetching the card data to start automatically. One is the primary, and connected to the primary communication server, and the second is the backup, connected to the backup communicatin server.
+These files allow the listeners that do the work of fetching the card data to start automatically. One is the primary, and connected to the primary communication server, and the second is the backup, connected to the backup communication server.
+
+You will also have to edit the files within the sub-directories in IT490. In each file, there is a variable called 'root_path'. Change that to match the file path of the directory that these files were downloaded into.
 
 To allow the files to run automatically at startup, run the following commands:
 
@@ -47,6 +50,7 @@ Before deploying, ensure that the deploy server is running on another machine. A
 To deploy the package to other servers, you will need to run the following commands from inside the IT490 directory:
 
 1. `cd Deploy/`
-2. `sudo php deployClient.php <Destination machine name> <Destination file path>`
+2. `php deployClient new`
+3. `php deployClient.php <Destination machine name> <Destination file path>`
 
 And you are done!

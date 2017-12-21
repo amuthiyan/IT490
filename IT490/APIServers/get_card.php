@@ -7,6 +7,7 @@ This Script contains functions that retrieve card data from an API and return th
 $root_path = '/home/amuthiyan/git/IT490/';
 
 require_once($root_path.'APIServers/api_pull.php.inc');
+require_once($root_path.'Failover/CheckAlive.php');
 require_once($root_path.'Logging/logscript.php');
 
 /*
@@ -21,7 +22,7 @@ Nothing
 */
 function CacheCard($card)
 {
-  $client = new rabbitMQClient("/home/amuthiyan/git/Inis/DeckRabbit.ini","DeckServer");
+  $client = SendToConsumer("/home/amuthiyan/git/Inis/DeckRabbit.ini","/home/amuthiyan/git/Inis/DeckRabbitStandby.ini","DeckServer");
   $card = json_encode($card);
   $request = array();
   $request["type"] = "cache_card";
@@ -43,7 +44,7 @@ False (0) if it is not.
 */
 function InCache($tag,$name)
 {
-  $client = new rabbitMQClient("/home/amuthiyan/git/Inis/DeckRabbit.ini","DeckServer");
+  $client = SendToConsumer("/home/amuthiyan/git/Inis/DeckRabbit.ini","/home/amuthiyan/git/Inis/DeckRabbitStandby.ini","DeckServer");
   $request["type"] = "check_cache";
   $request["tag"] = $tag;
   $request["name"] = $name;
@@ -67,7 +68,7 @@ function getCard($tag,$name)
   if(InCache($tag,$name) == 1)
   {
     print('Pulling from cache').PHP_EOL;
-    $client = new rabbitMQClient("/home/amuthiyan/git/Inis/DeckRabbit.ini","DeckServer");
+    $client = SendToConsumer("/home/amuthiyan/git/Inis/DeckRabbit.ini","/home/amuthiyan/git/Inis/DeckRabbitStandby.ini","DeckServer");
     $request["type"] = "load_cache";
     $request["tag"] = $tag;
     $request["name"] = $name;
@@ -109,6 +110,6 @@ function getCard($tag,$name)
 
 }
 
-$card = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
-var_dump($card);
+//$card = json_decode(getCard("LTGY-EN035","Harpie Channeler"),true);
+//var_dump($card);
  ?>

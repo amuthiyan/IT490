@@ -3,12 +3,13 @@
 This Script contains functions to check if a server is down, and to route it
 appropriately to the secondary server if this is the case.
 */
+$root_path = '/home/amuthiyan/git/IT490/';
 
-require_once('../RabbitMQ/path.inc');
-require_once('../RabbitMQ/get_host_info.inc');
-require_once('../RabbitMQ/get_host_info.inc');
-require_once('../RabbitMQ/rabbitMQLib.inc');
-require_once('../Logging/logscript.php');
+require_once($root_path.'RabbitMQ/path.inc');
+require_once($root_path.'RabbitMQ/get_host_info.inc');
+require_once($root_path.'RabbitMQ/get_host_info.inc');
+require_once($root_path.'RabbitMQ/rabbitMQLib.inc');
+require_once($root_path.'Logging/logscript.php');
 
 
 /*

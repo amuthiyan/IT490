@@ -48,7 +48,7 @@ $PathArray = explode("/",$file);
 LogMsg("Trying to start primary server test",$PathArray[4], "amuthiyan","DevDMZStandby");
 echo 'Staring primary'.PHP_EOL;
 
-$server = new rabbitMQServer("/home/amuthiyan/git/Inis/APIRabbit.ini","APIServer");
+$server = new rabbitMQServer("/home/amuthiyan/git/Inis/APIStandby.ini","APIServer");
 //LogMsg("Primary Server started", $PathArray[4],"DevDMZ");
 
 $server->process_requests('requestProcessor');
